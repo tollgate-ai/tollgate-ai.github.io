@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { Lock } from 'lucide-vue-next'
-import picture from '@diagrams/how-it-works-dark.svg?raw'
 import SectionHead from '@/components/SectionHead.vue'
-import { prepare } from '@/lib/svg'
-
-// The whole process, with its three loops, drawn in tollgate-ai/tollgate.
-const process = prepare(picture, { prefix: 'how' })
 
 const steps = [
   { n: '01', tone: 'text-you', title: 'You ask', text: 'In plain words. Tollgate writes a plan, and other AIs check it. Then Tollgate cuts it into small tickets.' },
@@ -40,11 +35,6 @@ const steps = [
           </div>
         </li>
       </ol>
-    </div>
-    <div class="mx-auto max-w-6xl px-6 pb-24">
-      <div class="overflow-x-auto rounded-2xl border border-border bg-[#0d1117] p-2">
-        <div class="hero-picture min-w-[720px]" v-html="process" />
-      </div>
     </div>
   </section>
 </template>

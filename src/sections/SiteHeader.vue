@@ -6,6 +6,7 @@ import { REPO } from '@/content'
 
 const links = [
   { href: '#how', text: 'How it works' },
+  { href: '#loops', text: 'Loops' },
   { href: '#lanes', text: 'Tiers' },
   { href: '#cost', text: 'Cost' },
   { href: '#start', text: 'Start' },
