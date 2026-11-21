@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* The colors of Tollgate's diagrams, dark theme: one color for each actor. */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-background: #0b0f15;
+  --color-panel: #0d1219;
+  --color-card: #0f141c;
+  --color-card-foreground: #f0f6fc;
+  --color-foreground: #f0f6fc;
+  --color-body: #c9d1d9;
+  --color-muted: #161c26;
+  --color-muted-foreground: #9198a1;
+  --color-faint: #6e7681;
+  --color-border: #262e3b;
+  --color-line: #1f2632;
+  --color-ring: #d29922;
+  --color-primary: #d29922;
+  --color-primary-foreground: #0b0f15;
+
+  --color-you: #4493f8;
+  --color-ai: #ab7df8;
+  --color-github: #3fb950;
+  --color-gate: #d29922;
+  --color-fail: #f85149;
+  --color-link: #79c0ff;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+  a { @apply text-link; }
+  a:hover { @apply text-[#a5d6ff]; }
+  :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
+}
+
+.blueprint {
+  background-image:
+    linear-gradient(#121924 1px, transparent 1px),
+    linear-gradient(90deg, #121924 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* The hero picture is the repository's own SVG, sized to the page. */
+.hero-picture svg { width: 100%; height: auto; display: block; }
+
+@keyframes go { from { left: -50px } to { left: 100% } }
+@keyframes stop {
+  0% { left: -50px } 45% { left: calc(76% - 52px) }
+  80% { left: calc(76% - 52px) } 100% { left: 100% }
+}
+.car-1 { animation: go 3.2s linear infinite }
+.car-2 { animation: go 5s linear infinite; animation-delay: -1.4s }
+.car-3 { animation: stop 8s ease-in-out infinite; animation-delay: -0.6s }
+.car-4 { animation: stop 11s ease-in-out infinite; animation-delay: -2.2s }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .car-1, .car-2, .car-3, .car-4 { animation: none; left: 40%; }
+}
