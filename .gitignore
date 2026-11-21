@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# A checkout of tollgate-ai/tollgate, for the diagrams, when it is placed here.
+tollgate/
