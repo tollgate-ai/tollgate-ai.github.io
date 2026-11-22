@@ -8,8 +8,8 @@ import { blob, REPO } from '@/content'
       <span>Tollgate · Apache 2.0 · by Mohamed Rekiba</span>
       <span class="flex flex-wrap gap-5">
         <a :href="REPO">GitHub</a>
-        <a :href="blob('docs/plan.md')">The plan</a>
-        <a :href="blob('docs/decisions.md')">Decisions</a>
+        <a :href="blob('docs/principles.md')">The principles</a>
+        <a :href="blob('docs/design.md')">The design</a>
       </span>
     </div>
   </footer>
