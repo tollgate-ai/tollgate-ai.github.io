@@ -2,16 +2,16 @@
 import { Check, User, Zap } from 'lucide-vue-next'
 import SectionHead from '@/components/SectionHead.vue'
 
-// What each tier passes, from docs/principles.md: tier 1 needs no plan, the change
+// What each tier passes, from docs/principles.md: tier 1 needs no plan, the
 // review starts at tier 2, the security review and your signed approval at tier 3.
 // With auto_merge on, the store merges tiers 1 and 2 by itself.
 const lanes = [
   { n: 1, color: '#3fb950', title: 'Small and safe', sub: 'A few files and a few lines.',
     checks: ['Locked tests', 'The gate'], you: false },
   { n: 2, color: '#4493f8', title: 'Ordinary change', sub: 'Most changes.',
-    checks: ['A plan', 'Locked tests', 'The gate', 'Change review'], you: false },
+    checks: ['A plan', 'Locked tests', 'The gate', 'A review'], you: false },
   { n: 3, color: '#d29922', title: 'Risky paths', sub: 'The files you mark as risky.',
-    checks: ['A plan', 'Locked tests', 'The gate', 'Change and security review', 'Your signed approval'], you: true },
+    checks: ['A plan', 'Locked tests', 'The gate', 'A review and a security review', 'Your signed approval'], you: true },
   { n: 4, color: '#f85149', title: 'Test setup and workflows', sub: 'The files that run the checks.',
     checks: ['A plan', 'Locked tests', 'The gate', 'Every review, as advice to you', 'Your signed approval'], you: true },
 ]
@@ -24,8 +24,8 @@ const lanes = [
         <SectionHead eyebrow="Four tiers" title="The riskier the change, the more checks it gets." tone="gate">
           <p>
             The gate gives each change a tier from the files it touches. You choose which files are
-            risky. Every change passes the locked tests and the gate. Tiers 3 and 4 add reviews, and
-            you merge them with /tollgate:merge.
+            risky. Every change passes the locked tests and the gate. From tier 2, a reviewer reads it.
+            Tiers 3 and 4 add a security review, and you merge them with /tollgate:merge.
           </p>
         </SectionHead>
         <div class="flex flex-wrap gap-5 text-sm text-muted-foreground">

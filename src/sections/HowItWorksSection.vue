@@ -25,7 +25,7 @@ function withSpotlight(text: string): string {
 const picture = withSpotlight(raw)
 
 const loops = [
-  { n: '01', tone: 'text-fail', title: 'The plan loop', text: 'Fresh reviewers read the plan before any code exists. For each problem they find, the builder fixes it, argues against it with evidence, or asks the advisor. This repeats for up to 4 rounds.' },
+  { n: '01', tone: 'text-fail', title: 'The plan loop', text: 'An analyst reads the project first, and fresh reviewers read the plan and the analysis before any code exists. For each problem they find, the builder fixes it, argues against it with evidence, or asks the advisor. This repeats for up to 4 rounds.' },
   { n: '02', tone: 'text-ai', title: 'The build loop', text: 'The gate scores each try on your machine. Below 70%, the builder gets the reasons and tries again from its best try so far. Each try climbs from the best one, not the last one. After 3 tries, the advisor decides.' },
   { n: '03', tone: 'text-github', title: 'The learning loop', text: 'After a task, /tollgate:retro turns at most 3 lessons into tickets: a new test, a new check, a new question for the reviewers, or a stricter rule. The next tasks follow them.' },
 ]
