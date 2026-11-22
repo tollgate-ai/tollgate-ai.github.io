@@ -12,14 +12,14 @@ GitHub publishes the address tollgate-ai.github.io only from a repository with t
 
 | To change | Edit |
 | --- | --- |
-| The install lines, the commands, and the links | `src/content.ts` |
+| The install lines, what you need, the commands, the rules, and the links | `src/content.ts` |
 | A section's words or layout | its file in `src/sections/` |
 | The order of the sections | `src/App.vue` |
 | The colours and the fonts | `src/style.css` |
 | The logo | `src/components/TollgateLogo.vue`, `public/favicon.svg`, and `public/favicon.png` |
 | A picture | its spec in tollgate-ai/tollgate, under `docs/diagrams/src/` |
 
-Every fact on the page comes from Tollgate's README and plan. Change a fact there first.
+Every fact on the page comes from Tollgate's README, principles, and plan. Change a fact there first.
 
 ## Start
 

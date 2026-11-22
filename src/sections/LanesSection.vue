@@ -2,39 +2,39 @@
 import { Check, User, Zap } from 'lucide-vue-next'
 import SectionHead from '@/components/SectionHead.vue'
 
-// What each tier passes, from docs/plan.md: tier 1 needs no plan, the change
-// review starts at tier 2, the security and GitHub reviews at tier 3, and at
-// tier 4 the reviews are advice. The driver merges tier 1 and 2 by itself.
+// What each tier passes, from docs/principles.md: tier 1 needs no plan, the change
+// review starts at tier 2, the security review and your signed approval at tier 3.
+// With auto_merge on, the store merges tiers 1 and 2 by itself.
 const lanes = [
   { n: 1, color: '#3fb950', title: 'Small and safe', sub: 'A few files and a few lines.',
     checks: ['Locked tests', 'The gate'], you: false },
   { n: 2, color: '#4493f8', title: 'Ordinary change', sub: 'Most changes.',
     checks: ['A plan', 'Locked tests', 'The gate', 'Change review'], you: false },
   { n: 3, color: '#d29922', title: 'Risky paths', sub: 'The files you mark as risky.',
-    checks: ['A plan', 'Locked tests', 'The gate', 'Change and security review', 'AI review on GitHub'], you: true },
+    checks: ['A plan', 'Locked tests', 'The gate', 'Change and security review', 'Your signed approval'], you: true },
   { n: 4, color: '#f85149', title: 'Test setup and workflows', sub: 'The files that run the checks.',
-    checks: ['A plan', 'Locked tests', 'The gate', 'Every review, as advice to you', 'AI review on GitHub'], you: true },
+    checks: ['A plan', 'Locked tests', 'The gate', 'Every review, as advice to you', 'Your signed approval'], you: true },
 ]
 </script>
 
 <template>
-  <section id="lanes" class="border-t border-line">
+  <section id="lanes" class="border-t border-line bg-panel">
     <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-24">
       <div class="flex flex-wrap items-end justify-between gap-8">
         <SectionHead eyebrow="Four tiers" title="The riskier the change, the more checks it gets." tone="gate">
           <p>
-            Tollgate gives each change a tier from the files it touches. You choose which files are
+            The gate gives each change a tier from the files it touches. You choose which files are
             risky. Every change passes the locked tests and the gate. Tiers 3 and 4 add reviews, and
-            you merge them.
+            you merge them with /tollgate:merge.
           </p>
         </SectionHead>
         <div class="flex flex-wrap gap-5 text-sm text-muted-foreground">
-          <span class="inline-flex items-center gap-2"><Zap class="size-4 text-body" aria-hidden="true" />Tollgate merges it</span>
+          <span class="inline-flex items-center gap-2"><Zap class="size-4 text-body" aria-hidden="true" />Tollgate can merge it, with auto_merge on</span>
           <span class="inline-flex items-center gap-2"><User class="size-4 text-body" aria-hidden="true" />You merge it</span>
         </div>
       </div>
 
-      <div class="overflow-hidden rounded-2xl border border-border bg-panel">
+      <div class="overflow-hidden rounded-2xl border border-border bg-background">
         <div class="hidden grid-cols-[230px_minmax(0,1fr)_190px] gap-7 px-7 py-3.5 font-mono text-[11px] tracking-[0.14em] text-faint md:grid">
           <span>TIER</span><span>WHAT EVERY CHANGE IN IT PASSES</span><span class="justify-self-end">WHO MERGES</span>
         </div>
@@ -75,7 +75,7 @@ const lanes = [
 
           <div class="flex items-center gap-2.5 justify-self-start rounded-lg border bg-background px-3.5 py-2.5 md:justify-self-end" :style="{ borderColor: l.color }">
             <component :is="l.you ? User : Zap" class="size-4" :style="{ color: l.color }" aria-hidden="true" />
-            <span class="text-sm font-semibold">{{ l.you ? 'Waits for you' : 'Merges itself' }}</span>
+            <span class="text-sm font-semibold">{{ l.you ? 'You merge it' : 'Can merge itself' }}</span>
           </div>
         </div>
       </div>

@@ -5,8 +5,7 @@ import { Button } from '@/components/ui/button'
 import { REPO } from '@/content'
 
 const links = [
-  { href: '#how', text: 'How it works' },
-  { href: '#loops', text: 'Loops' },
+  { href: '#how-it-works', text: 'How it works' },
   { href: '#lanes', text: 'Tiers' },
   { href: '#cost', text: 'Cost' },
   { href: '#start', text: 'Start' },

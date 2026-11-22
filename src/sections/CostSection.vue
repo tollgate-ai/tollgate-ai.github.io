@@ -17,7 +17,7 @@ const numbers = [
     <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 lg:grid-cols-2">
       <SectionHead eyebrow="Cost" title="Tollgate costs more than Claude Code alone. Here is how much." tone="github">
         <p>
-          On ten small tickets, every change Tollgate opened passed its checks. We do not know yet
+          On ten small tickets, every change Tollgate made ready passed its checks. We do not know yet
           whether it also needs fewer fixes after the merge. That is still being measured.
         </p>
         <p>

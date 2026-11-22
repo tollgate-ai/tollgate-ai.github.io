@@ -15,8 +15,8 @@ const scene = prepare(banner, {
   drop: [/<rect width="1200" height="600" fill="#0d1117"\/>/, /<rect x="20\.5" y="20\.5"[^>]*\/>/],
 })
 
-const steps = ['You ask', 'Tests locked', 'AI builds', 'Tests pass', 'Merged']
-const checkpoint = 'Tests pass'
+const steps = ['You ask', 'Tests locked', 'AI builds', 'Gate passes', 'Merged']
+const checkpoint = 'Gate passes'
 </script>
 
 <template>
@@ -34,9 +34,10 @@ const checkpoint = 'Tests pass'
           Let AI write your code.<br><span class="text-gate">Merge only what works.</span>
         </h1>
         <p class="max-w-xl text-lg leading-relaxed text-muted-foreground">
-          Before the AI writes any code, Tollgate writes tests for what you asked for and locks
-          them, so the AI cannot change them. The AI keeps trying until those tests pass. Only then
-          does its change reach your main branch.
+          Tollgate is a plugin for Claude Code that runs on your machine. Before the AI writes any
+          code, Tollgate writes tests for what you asked for and locks them. The AI cannot change
+          them. A gate with no AI scores each try, and 70% passes. Only then does the change reach
+          your main branch.
         </p>
         <ol class="m-0 flex list-none flex-wrap items-center gap-1 p-0 font-mono text-[11px] tracking-[0.1em]" aria-label="What happens to a change">
           <template v-for="(step, i) in steps" :key="step">

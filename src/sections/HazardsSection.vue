@@ -17,7 +17,7 @@ const hazards = [
       <SectionHead eyebrow="The problem" title="Telling the AI not to does not stop these. Locked tests do." tone="fail">
         <p>
           An AI can ignore a written rule. When it reviews its own work, it defends it. So Tollgate
-          locks the tests before the AI writes any code. Then a program with no AI checks the result.
+          locks the tests before the AI writes any code. Then a program with no AI checks each try.
         </p>
       </SectionHead>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

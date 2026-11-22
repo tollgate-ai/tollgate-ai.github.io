@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import SectionHead from '@/components/SectionHead.vue'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { COMMANDS, INSTALL } from '@/content'
+import { COMMANDS, INSTALL, NEEDS } from '@/content'
 
 const copied = ref(false)
 async function copy() {
@@ -35,11 +35,16 @@ async function copy() {
           </div>
           <pre class="m-0 overflow-x-auto p-5 font-mono text-[15px] leading-loose text-body"><template v-for="(line, i) in INSTALL" :key="line"><span class="text-github">&gt;</span> {{ line }}<template v-if="i < INSTALL.length - 1">{{ '\n' }}</template></template></pre>
         </Card>
-        <p class="text-[15px] leading-relaxed text-muted-foreground">
-          To run tasks on GitHub instead of your machine, add one of these repository secrets:
-          <code class="font-mono text-body">CLAUDE_CODE_OAUTH_TOKEN</code> or
-          <code class="font-mono text-body">ANTHROPIC_API_KEY</code>.
-        </p>
+        <div class="flex flex-col gap-2.5 text-[15px] leading-relaxed text-muted-foreground">
+          <p>You need:</p>
+          <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+            <li v-for="n in NEEDS" :key="n" class="rounded-full border border-border bg-card px-3 py-1 text-[13px] text-body">{{ n }}</li>
+          </ul>
+          <p>
+            Run <code class="font-mono text-body">/tollgate:init</code> inside your project. Everything runs
+            on your machine. You add no repository secrets, and nothing in Tollgate uses GitHub.
+          </p>
+        </div>
       </div>
       <Card class="min-w-0 overflow-hidden">
         <h3 class="px-5 py-4 font-mono text-xs font-normal tracking-[0.14em] text-muted-foreground">WHAT YOU TYPE</h3>
