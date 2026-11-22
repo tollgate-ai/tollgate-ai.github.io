@@ -36,6 +36,17 @@ npm run build     # checks the types, then writes the site to dist/
 
 To keep Tollgate's copy somewhere else, set `TOLLGATE_DIR` to its folder.
 
+## Checks before a commit
+
+Install the checks once:
+
+```sh
+pipx install pre-commit==4.7.0
+pre-commit install
+```
+
+Each commit then checks the YAML and JSON files, conflict marks, large files, and whitespace, and the message must read `type(scope): subject`. Each push runs the type check and the build. CI runs the same file checks on each pull request.
+
 ## When a change goes live
 
 - **A release** publishes the site. release-please keeps one pull request open that bumps the version and writes `CHANGELOG.md`. Merging it tags the release, and the release workflow then builds and publishes that tag.

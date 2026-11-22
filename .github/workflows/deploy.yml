@@ -41,6 +41,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Check the files
+        if: github.event_name == 'pull_request'
+        run: pipx run pre-commit==4.7.0 run --all-files --show-diff-on-failure
       - name: Build the site
         run: |
           npm ci
