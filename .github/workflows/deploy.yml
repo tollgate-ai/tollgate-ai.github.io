@@ -1,22 +1,29 @@
-# Build the Tollgate website and publish it at https://tollgate-ai.github.io/.
-# The hero picture comes from tollgate-ai/tollgate's docs/diagrams, so the build
+# Build the Tollgate website, and publish a release at https://tollgate-ai.github.io/.
+# The pictures come from tollgate-ai/tollgate's docs/diagrams, so the build
 # checks that repository out next to this one.
 #
-# A push to main publishes. A pull request only builds. It also runs once a day,
-# so a redrawn diagram in tollgate-ai/tollgate shows up by the next day, and by
-# hand from the Actions tab.
+# A release publishes: release.yml calls this workflow with the new tag, because
+# a release made with the default token starts no other workflow. A pull request
+# only builds. To publish a tag again, run it by hand from the Actions tab.
 name: deploy
 on:
-  push:
-    branches: [main]
   pull_request:
-  schedule:
-    - cron: "17 3 * * *"
+  workflow_call:
+    inputs:
+      ref:
+        description: The release tag to publish, such as v1.0.0
+        type: string
+        required: true
   workflow_dispatch:
+    inputs:
+      ref:
+        description: The release tag to publish, such as v1.0.0
+        type: string
+        required: true
 permissions:
   contents: read
 concurrency:
-  group: pages-${{ github.ref }}
+  group: pages
   cancel-in-progress: false
 jobs:
   build:
@@ -26,6 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.ref || github.ref }}
           persist-credentials: false
       - uses: actions/checkout@v4
         with:
