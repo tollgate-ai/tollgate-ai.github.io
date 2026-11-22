@@ -1,0 +1,27 @@
+# Each change is squashed into one commit on main, and its title becomes that
+# commit's subject. release-please reads the subject to set the version and the
+# changelog, so the title must have the form type(scope): subject.
+name: title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  title:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: The title has the form type(scope) subject
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          types='feat|fix|docs|test|refactor|chore|build|ci|perf|style|revert'
+          if printf '%s' "$TITLE" | grep -Eq "^($types)\([^()[:space:]]+\)!?: [^[:space:]]"; then
+            echo "The title has the right form."
+          else
+            echo "::error::The title becomes the commit on main. Write it as type(scope): subject, such as fix(site): fix the tier cards on a phone. The types are: ${types//|/, }."
+            exit 1
+          fi
