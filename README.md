@@ -41,7 +41,7 @@ To keep Tollgate's copy somewhere else, set `TOLLGATE_DIR` to its folder.
 - **A release** publishes the site. release-please keeps one pull request open that bumps the version and writes `CHANGELOG.md`. Merging it tags the release, and the release workflow then builds and publishes that tag.
 - **A push to main** publishes nothing. It updates the open release pull request.
 - **A pull request** gets the same build, without the publish.
-- **Again, by hand:** in this repository's Actions tab, run "deploy" with the tag to publish, such as `v1.0.0`.
+- **Again, by hand:** in this repository's Actions tab, run "deploy" and pick the tag under "Use workflow from", such as `v1.0.0`.
 
 The pictures come from tollgate-ai/tollgate's main at build time, so a picture redrawn there shows up with the next release.
 
