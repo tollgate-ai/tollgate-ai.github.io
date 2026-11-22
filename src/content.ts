@@ -12,7 +12,7 @@ export const NEEDS = ['Claude Code', 'Python 3.11 or later', 'git', 'pre-commit'
 
 export const COMMANDS = [
   ['/tollgate:init', 'Sets up a project: the settings, this machine\'s key, your owner key, and the checks before each commit.'],
-  ['/tollgate:analyze', 'Reads the project and reports how it is built, with a citation for each finding. It changes no file.'],
+  ['/tollgate:analyze', 'Reads the project and reports how it is built, with a citation for each fact. It changes no file.'],
   ['/tollgate:task', 'Starts a task from your request. It runs in the background.'],
   ['/tollgate:status', 'Shows two short lists: Done, and Still to do.'],
   ['/tollgate:merge', 'Lists the ready changes and merges one. For tiers 3 and 4, you sign the approval with your SSH key.'],
@@ -26,9 +26,9 @@ export const COMMANDS = [
 // The 8 groups of rules, numbered as on the how-it-works picture. 18 rules in all.
 export const RULE_GROUPS = [
   { n: 1, title: 'Plan first', rules: [
-    'An analyst reads the project first. Each finding cites the code, or is marked assumed.',
+    'An analyst reads the project first. Each fact cites the code, or is marked assumed.',
     'Fresh reviewers check the plan before any code exists, for up to 4 rounds.',
-    'A question the plan cannot settle waits for the advisor before the plan is locked.',
+    'An assumption the plan cannot settle waits for the advisor before the plan is locked.',
     'A large request starts with the base, then one thin path, then one feature at a time.',
     'Each ticket has a checklist. A must-have item cannot fail.',
   ] },

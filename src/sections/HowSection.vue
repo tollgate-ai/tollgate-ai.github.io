@@ -3,7 +3,7 @@ import { Lock } from 'lucide-vue-next'
 import SectionHead from '@/components/SectionHead.vue'
 
 const steps = [
-  { n: '01', tone: 'text-you', title: 'You ask', text: 'In plain words. An AI reads your project first, and cites the code for each finding. Tollgate writes a plan, and other AIs check it. A question the plan cannot settle waits for you. Then Tollgate cuts it into small tickets.' },
+  { n: '01', tone: 'text-you', title: 'You ask', text: 'In plain words. An AI reads your project first, and cites the code for each fact. Tollgate writes a plan, and other AIs check it. An assumption the plan cannot settle waits for you. Then Tollgate cuts it into small tickets.' },
   { n: '02', tone: 'text-github', title: 'Tests are locked', text: 'A separate AI writes one test for each must-have item. The store locks the tests and signs the lock before any code exists.' },
   { n: '03', tone: 'text-ai', title: 'The AI builds', text: 'It builds in a container, on a copy of your project, with no git credentials. Each try starts from its best try so far. After 3 tries, or the same failure twice, the advisor decides.' },
   { n: '04', tone: 'text-gate', title: 'The gate scores each try', text: 'The gate is a program with no AI in it. It checks the ticket, the locked files, the tier, and the tests, and gives the try a score. 70% passes. A try that passes becomes a ready change.' },
