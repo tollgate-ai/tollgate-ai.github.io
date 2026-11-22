@@ -1,0 +1,6 @@
+{
+  "github-pages": [
+    { "name": "main", "type": "branch" },
+    { "name": "v*", "type": "tag" }
+  ]
+}

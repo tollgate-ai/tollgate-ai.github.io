@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: A problem with Tollgate itself
+    url: https://github.com/tollgate-ai/tollgate/issues/new/choose
+    about: This repository is only the website. Report Tollgate's problems in its own repository.
+  - name: A security hole
+    url: https://github.com/tollgate-ai/tollgate-ai.github.io/security/advisories/new
+    about: Report it privately, never in a public issue.

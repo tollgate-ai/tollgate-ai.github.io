@@ -4,7 +4,8 @@
 #
 # A release publishes: release.yml calls this workflow with the new tag, because
 # a release made with the default token starts no other workflow. A pull request
-# only builds. To publish a tag again, run it by hand from the Actions tab.
+# only builds. To publish a tag again, run it by hand from the Actions tab and
+# pick the tag under "Use workflow from".
 name: deploy
 on:
   pull_request:
@@ -15,11 +16,6 @@ on:
         type: string
         required: true
   workflow_dispatch:
-    inputs:
-      ref:
-        description: The release tag to publish, such as v1.0.0
-        type: string
-        required: true
 permissions:
   contents: read
 concurrency:
@@ -28,34 +24,39 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
       TOLLGATE_DIR: ${{ github.workspace }}/tollgate
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           ref: ${{ inputs.ref || github.ref }}
           persist-credentials: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: tollgate-ai/tollgate
           path: tollgate
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
           cache: npm
+      - name: Check the files
+        if: github.event_name == 'pull_request'
+        run: pipx run pre-commit==4.7.0 run --all-files --show-diff-on-failure
       - name: Build the site
         run: |
           npm ci
           npm run build
       - if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: dist
   deploy:
     if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       pages: write
       id-token: write
@@ -64,4 +65,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5

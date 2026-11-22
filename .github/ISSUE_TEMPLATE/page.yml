@@ -1,0 +1,22 @@
+name: Something is wrong on the page
+description: A broken part, a wrong word, or a page that does not work on your screen.
+labels: [bug]
+body:
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong
+      description: Where on the page, and what you see.
+    validations:
+      required: true
+  - type: textarea
+    id: right
+    attributes:
+      label: What it should be
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and screen
+      description: Such as Chrome on a phone.

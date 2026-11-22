@@ -1,0 +1,25 @@
+# Dependabot opens a pull request each week when a GitHub Action or an npm
+# package has a new version. Updates of one kind come in one pull request, and
+# each commit message has the form type(scope): subject, so release-please reads it.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: ci
+      include: scope
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
+    commit-message:
+      prefix: chore
+      include: scope
