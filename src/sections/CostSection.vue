@@ -1,30 +1,28 @@
 <script setup lang="ts">
 import SectionHead from '@/components/SectionHead.vue'
 import { Card } from '@/components/ui/card'
-import { blob } from '@/content'
 
-// From the comparison in docs/experiments/e310/results.md, as the README states it.
+// The default stop rules, from docs/principles.md. Each one is a setting under "stop".
 const numbers = [
-  { value: '0.7 USD', text: 'about, per ticket', accent: false },
-  { value: '3 min', text: 'about, per ticket', accent: false },
-  { value: '10×', text: 'the AI cost of Claude Code alone', accent: true },
-  { value: '2–4×', text: 'the time of Claude Code alone', accent: true },
+  { value: '3', text: 'tries a ticket, then the advisor decides', accent: false },
+  { value: '30 min', text: 'at most, for one try', accent: false },
+  { value: '10 USD', text: 'at most, for one ticket', accent: true },
+  { value: '60 USD', text: 'at most, for one task', accent: true },
 ]
 </script>
 
 <template>
   <section id="cost" class="border-t border-line bg-panel">
     <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 lg:grid-cols-2">
-      <SectionHead eyebrow="Cost" title="Tollgate costs more than Claude Code alone. Here is how much." tone="github">
+      <SectionHead eyebrow="Cost" title="Tollgate costs more than Claude Code alone. The stop rules cap it." tone="github">
         <p>
-          On ten small tickets, every change Tollgate made ready passed its checks. We do not know yet
-          whether it also needs fewer fixes after the merge. That is still being measured.
+          Each ticket runs several AI roles: a test writer, a builder, and reviewers. So it costs more
+          and takes longer. Tollgate has no measured cost numbers yet.
         </p>
         <p>
           Use it when an AI writes most of each change, and the change must be right. For a quick
           change where a mistake is cheap, use Claude Code alone. It is faster and cheaper.
         </p>
-        <a :href="blob('docs/experiments/e310/results.md')" class="text-[15px]">See the comparison</a>
       </SectionHead>
       <div class="grid grid-cols-2 gap-3.5">
         <Card v-for="x in numbers" :key="x.value + x.text" class="p-6">

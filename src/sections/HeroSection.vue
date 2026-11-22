@@ -49,8 +49,8 @@ const checkpoint = 'Gate passes'
           <Button as="a" href="#start" size="lg" class="no-underline hover:text-primary-foreground">
             Get started<ArrowRight />
           </Button>
-          <Button as="a" :href="blob('docs/plan.md')" variant="outline" size="lg" class="no-underline hover:text-foreground">
-            <BookOpen />Read the plan
+          <Button as="a" :href="blob('docs/design.md')" variant="outline" size="lg" class="no-underline hover:text-foreground">
+            <BookOpen />Read the design
           </Button>
         </div>
       </div>

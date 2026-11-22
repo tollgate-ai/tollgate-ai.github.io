@@ -19,7 +19,7 @@ GitHub publishes the address tollgate-ai.github.io only from a repository with t
 | The logo | `src/components/TollgateLogo.vue`, `public/favicon.svg`, and `public/favicon.png` |
 | A picture | its spec in tollgate-ai/tollgate, under `docs/diagrams/src/` |
 
-Every fact on the page comes from Tollgate's README, principles, and plan. Change a fact there first.
+Every fact on the page comes from Tollgate's README, principles, and design. Change a fact there first.
 
 ## Start
 

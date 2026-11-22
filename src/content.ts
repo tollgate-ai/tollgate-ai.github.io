@@ -22,7 +22,7 @@ export const COMMANDS = [
   ['/tollgate:diagram', 'Draws a diagram as an SVG file, in light and dark.'],
 ] as const
 
-// The 8 groups of rules, numbered as the callouts on the rules picture. 14 rules in all.
+// The 8 groups of rules, numbered as on the how-it-works picture. 14 rules in all.
 export const RULE_GROUPS = [
   { n: 1, title: 'Plan first', rules: [
     'Fresh reviewers check the plan before any code exists, for up to 4 rounds.',
