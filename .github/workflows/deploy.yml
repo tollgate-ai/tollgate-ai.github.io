@@ -1,0 +1,59 @@
+# Build the Tollgate website and publish it at https://tollgate-ai.github.io/.
+# The hero picture comes from tollgate-ai/tollgate's docs/diagrams, so the build
+# checks that repository out next to this one.
+#
+# A push to main publishes. A pull request only builds. It also runs once a day,
+# so a redrawn diagram in tollgate-ai/tollgate shows up by the next day, and by
+# hand from the Actions tab.
+name: deploy
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TOLLGATE_DIR: ${{ github.workspace }}/tollgate
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: tollgate-ai/tollgate
+          path: tollgate
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Build the site
+        run: |
+          npm ci
+          npm run build
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
