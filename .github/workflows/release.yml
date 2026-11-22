@@ -1,0 +1,17 @@
+# release-please reads the commits on main and keeps one pull request open that
+# bumps the version in package.json and writes CHANGELOG.md. Merging it tags the release.
+name: release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
